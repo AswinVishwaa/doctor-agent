@@ -1,0 +1,32 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:14
+    container_name: backend-db-1
+    restart: always
+    environment:
+      POSTGRES_USER: doctor
+      POSTGRES_PASSWORD: doctorpass
+      POSTGRES_DB: doctorai
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  backend:
+    build: ./backend
+    container_name: backend-api
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    volumes:
+      - ./backend:/app
+    working_dir: /app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgresql://doctor:doctorpass@db:5432/doctorai
+
+volumes:
+  pgdata:

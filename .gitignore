@@ -1,0 +1,37 @@
+# -----------------------------
+# Node / React frontend ignores
+# -----------------------------
+**/node_modules/
+**/dist/
+**/.vite/
+
+# -----------------------------
+# Python / Backend ignores
+# -----------------------------
+**/__pycache__/
+**/*.py[cod]
+**/*.pyo
+**/instance/
+**/migrations/
+
+# -----------------------------
+# Environment variables
+# -----------------------------
+.env
+backend/.env
+
+# -----------------------------
+# System and editor junk
+# -----------------------------
+.DS_Store
+.vscode/
+*.log
+
+# -----------------------------
+# Docker specific (optional)
+# -----------------------------
+**/*.pid
+**/*.sock
+
+venv/
+backend/credentials.json
