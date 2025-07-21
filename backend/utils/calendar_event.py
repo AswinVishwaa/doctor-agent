@@ -3,13 +3,19 @@ import os
 from datetime import datetime, timedelta
 from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
+from dotenv import load_dotenv
 
+load_dotenv()
 # Define scopes for Google Calendar API
 SCOPES = ['https://www.googleapis.com/auth/calendar']
-SERVICE_ACCOUNT_FILE = os.path.join("backend", "credentials.json")  # or use full path if needed
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # Goes up from utils to project root
+SERVICE_ACCOUNT_FILE = os.path.join(BASE_DIR, "credentials.json")# or use full path if needed
 
 # Load Google Calendar ID from environment variable
 calendar_id = os.getenv("GOOGLE_CALENDAR_ID")
+print("📂 Using credentials path:", SERVICE_ACCOUNT_FILE)
+print("🗂️ Calendar ID is:", calendar_id)
+
 
 if not calendar_id:
     raise ValueError("❌ GOOGLE_CALENDAR_ID not set. Set it in your environment.")
@@ -54,5 +60,27 @@ def create_calendar_event(patient_name, doctor_name, slot_time_iso):
     except Exception as e:
         import traceback
         print("❌ Failed to create Google Calendar event.")
+        print("Error Message:", str(e))
         traceback.print_exc()
         return None
+        
+# calendar.py
+# (your existing code remains above)
+"""
+if __name__ == "__main__":
+    # MOCK DATA for testing
+    test_patient_name = "John Doe"
+    test_doctor_name = "Dr. Strange"
+    test_slot_time = (datetime.now() + timedelta(minutes=10)).isoformat()  # 10 mins from no
+    print("🚀 Running calendar event creation test...")
+
+    # Optionally override env variable directly for testing
+    calendar_id = "61bd94b277f047aa2c556bdfa3c53750e193509291a117eb443b1a5e36ae466c@group.calendar.google.com"
+
+    # Call the function
+    response = create_calendar_event(test_patient_name, test_doctor_name, test_slot_time)
+    if response:
+        print("🎉 Test event created!")
+    else:
+        print("⚠️ Test failed.")
+"""

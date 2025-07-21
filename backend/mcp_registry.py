@@ -4,7 +4,7 @@ def get_tool_registry() -> List[dict]:
     return [
         {
             "name": "check_availability",
-            "description": "Check if a doctor is available on a given date. Required parameters: doctor_name, date.",
+            "description": "Check if a doctor is available on a given date. Required parameters: doctor_name, date. returns as soons its find the available slot.",
             "method": "GET",
             "endpoint": "/mcp/tool/check_availability",
             "params": {

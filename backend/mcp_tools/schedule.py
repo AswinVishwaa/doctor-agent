@@ -3,8 +3,8 @@ from sqlalchemy.orm import Session
 from db.database import get_db
 from db.models import Doctor, Patient, Appointment
 from datetime import datetime
-from utils.email import send_confirmation_email
-from utils.calendar import create_calendar_event
+from utils.email_send import send_confirmation_email
+from utils.calendar_event import create_calendar_event
 
 router = APIRouter(tags=["tools"])
 

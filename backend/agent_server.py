@@ -123,6 +123,8 @@ async def agent_chat(request: Request):
                         NEVER schedule appointments unless the user clearly says 'book', 'schedule', or 'make an appointment'. 
                         Even if availability is known, do not assume intent. Return only information.
                         Do NOT ask follow-up questions or wait for input. Return information only and stop.
+                        while asking for availability only use check availability tool. dont use other tools unless the user specifically ask.
+                        while asking for summary only use generate_summary tool dont use any other tools unless user specifically ask.
                                                                                                                             """
 
     if query:
