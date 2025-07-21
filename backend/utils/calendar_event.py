@@ -75,7 +75,7 @@ if __name__ == "__main__":
     print("🚀 Running calendar event creation test...")
 
     # Optionally override env variable directly for testing
-    calendar_id = "61bd94b277f047aa2c556bdfa3c53750e193509291a117eb443b1a5e36ae466c@group.calendar.google.com"
+    calendar_id = "your calendar id"
 
     # Call the function
     response = create_calendar_event(test_patient_name, test_doctor_name, test_slot_time)
